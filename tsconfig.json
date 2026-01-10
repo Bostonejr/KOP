@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    /* TypeScript Configuration
+     *
+     * TypeScript adds static typing to JavaScript. These settings tell the compiler:
+     * - What JavaScript version to output
+     * - How strict to be with type checking
+     * - Where to find our code
+     *
+     * The stricter the settings, the more bugs TypeScript catches before runtime.
+     */
+
+    // Target ES2020 - modern JavaScript features supported by all current browsers
+    "target": "ES2020",
+
+    // Use bundler module resolution (optimized for Vite)
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    // Enable all strict type checking options
+    // This catches more potential bugs but requires more type annotations
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // JSX configuration for React 19's new JSX transform
+    // "react-jsx" means we don't need to import React in every file
+    "jsx": "react-jsx",
+
+    // Path aliases - matches our Vite config
+    // '@/components/Header' -> 'src/components/Header'
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    // Include type definitions for DOM and ES2020 features
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    // Allow importing JSON files
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    // Don't emit JS files - Vite handles that
+    "noEmit": true,
+
+    // Allow default imports from modules without default export
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Skip type checking of declaration files for faster builds
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

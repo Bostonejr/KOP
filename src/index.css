@@ -1,0 +1,104 @@
+/**
+ * Main Stylesheet - Tailwind CSS v4
+ *
+ * Tailwind CSS v4 uses a CSS-first configuration approach.
+ * We import Tailwind and then use @theme to define our custom design tokens.
+ *
+ * The @import "tailwindcss" brings in all of Tailwind's functionality.
+ * The @theme directive lets us define custom values inline in CSS.
+ */
+
+@import "tailwindcss";
+
+/**
+ * Theme Configuration
+ *
+ * Define custom design tokens that extend or override Tailwind's defaults.
+ * These become available as utility classes (e.g., bg-charcoal, text-gold).
+ */
+@theme {
+  /* Color palette from Figma designs */
+  --color-charcoal: #333333;
+  --color-charcoal-dark: #2a2a2a;
+  --color-charcoal-light: #4a4a4a;
+  --color-gold: #C9A96E;
+  --color-gold-dark: #B8985D;
+  --color-gold-light: #D4B97D;
+  --color-light-gray: #E5E5E5;
+
+  /* Typography - Font families */
+  --font-serif: 'Playfair Display', Georgia, Cambria, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Custom animations */
+  --animate-fade-in: fadeIn 0.6s ease-out forwards;
+  --animate-slide-up: slideUp 0.6s ease-out forwards;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/**
+ * Keyframes for custom animations
+ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Base Layer - Default element styles
+ */
+@layer base {
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Set default font and colors for the body */
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings use serif font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+
+  /* Remove default link underlines */
+  a {
+    text-decoration: none;
+  }
+}
+
+/**
+ * Utilities Layer - Custom utility classes
+ */
+@layer utilities {
+  /* Text balance for better line wrapping in headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
