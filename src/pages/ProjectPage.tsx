@@ -48,7 +48,7 @@ const ProjectPage: React.FC = () => {
     return (
       <>
         <Header variant="solid" />
-        <div className="min-h-screen pt-24 flex items-center justify-center">
+        <div className="min-h-screen pt-32 flex items-center justify-center">
           <div className="animate-pulse text-charcoal font-sans">
             Loading project...
           </div>
@@ -62,7 +62,7 @@ const ProjectPage: React.FC = () => {
     return (
       <>
         <Header variant="solid" />
-        <div className="min-h-screen pt-24 flex items-center justify-center">
+        <div className="min-h-screen pt-32 flex items-center justify-center">
           <div className="text-center">
             <p className="text-charcoal/50 font-sans mb-4">
               Project not found
@@ -106,7 +106,7 @@ const ProjectPage: React.FC = () => {
       <Header variant="solid" />
 
       {/* Grey section - header area through 1/3 of hero image */}
-      <div style={{ backgroundColor: '#CACACA' }} className="pt-24 pb-16">
+      <div style={{ backgroundColor: '#CACACA' }} className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
           {/* Project header section: Title + Description + Metadata */}
