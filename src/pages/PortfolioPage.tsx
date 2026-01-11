@@ -58,7 +58,7 @@ const PortfolioPage: React.FC = () => {
       <Header variant="solid" />
 
       {/* Main content */}
-      <main className="min-h-screen bg-white pt-24 pb-16">
+      <main className="min-h-screen pt-24 pb-16" style={{ backgroundColor: '#CACACA' }}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
           {/* Page header: Title and Filter */}

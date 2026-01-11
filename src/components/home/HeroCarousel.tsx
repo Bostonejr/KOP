@@ -30,7 +30,7 @@ interface HeroCarouselProps {
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({
   projects,
-  autoPlayInterval = 6000,  // 6 seconds per slide
+  autoPlayInterval = 8000,  // 8 seconds per slide (longer to accommodate 4s fade)
 }) => {
   // Current slide index (0-based)
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,23 +102,18 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
 
   /**
    * Animation variants for slide transitions
-   *
-   * custom parameter receives the direction value
-   * to animate from the correct side.
+   * Using soft fade in/out transition (4 seconds)
    */
   const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',  // Enter from side
+    enter: {
       opacity: 0,
-    }),
+    },
     center: {
-      x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => ({
-      x: direction < 0 ? '100%' : '-100%',  // Exit to opposite side
+    exit: {
       opacity: 0,
-    }),
+    },
   };
 
   // Don't render if no projects
@@ -132,17 +127,15 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
         AnimatePresence tracks components by key and plays exit
         animations when they're removed from the DOM.
       */}
-      <AnimatePresence initial={false} custom={direction} mode="wait">
+      <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={currentIndex}  // Unique key triggers animation on change
-          custom={direction}   // Pass direction to variants
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
           transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.4 },
+            opacity: { duration: 2, ease: 'easeInOut' },  // 2s fade out + 2s fade in = 4s total
           }}
           className="absolute inset-0"
         >
@@ -183,10 +176,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
           to={`/portfolio/${currentProject.slug}`}
           className="group"
         >
-          <h2 className="
-            text-white font-serif text-xl md:text-3xl lg:text-4xl
-            group-hover:text-gold transition-colors duration-300
-          ">
+          <h2
+            style={{ fontFamily: "'Caudex', Georgia, serif", fontWeight: 700 }}
+            className="
+              text-white text-xl md:text-3xl lg:text-4xl
+              group-hover:text-gold transition-colors duration-300
+            "
+          >
             {currentProject.name}
           </h2>
         </Link>

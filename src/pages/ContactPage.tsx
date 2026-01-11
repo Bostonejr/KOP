@@ -52,37 +52,13 @@ const ContactPage: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:block"
+            className="hidden lg:block h-full"
           >
-            {/*
-              Contact page image
-
-              In production, this would come from Sanity CMS.
-              For now, we'll use a placeholder or a static image.
-
-              The image should be an architectural detail shot
-              (like the wooden lattice roof from the Figma design).
-            */}
-            <div className="
-              w-full h-full
-              bg-charcoal
-              flex items-center justify-center
-            ">
-              {/*
-                Placeholder - replace with actual image when available
-
-                You can either:
-                1. Use a static image: <img src="/images/contact-hero.jpg" ... />
-                2. Fetch from Sanity using site settings
-              */}
-              <div className="text-center text-white/30 font-sans text-sm p-8">
-                <p>Contact image placeholder</p>
-                <p className="text-xs mt-2">
-                  Add image to Sanity CMS or place at<br />
-                  /public/images/contact-hero.jpg
-                </p>
-              </div>
-            </div>
+            <img
+              src="/images/contact-hero.jpg"
+              alt="Architectural design"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         </div>
       </main>

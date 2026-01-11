@@ -85,13 +85,16 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
       initial={{ y: -100 }}    // Start 100px above viewport
       animate={{ y: 0 }}        // Animate to natural position
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      style={{ zIndex: 9999 }}  // Inline z-index to ensure visibility
+      style={{ zIndex: 9999, height: '90px' }}  // Inline z-index and 90px height
       className={`
         /* Fixed positioning - stays at top while scrolling */
         fixed top-0 left-0 right-0
 
         /* Horizontal padding - responsive */
-        px-6 py-4 md:px-12 lg:px-16
+        px-6 md:px-12 lg:px-16
+
+        /* Flex to center content vertically */
+        flex items-center
 
         /* Smooth background transition */
         transition-all duration-300
@@ -106,14 +109,21 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
           : 'bg-black/20 backdrop-blur-[2px]'}
       `}
     >
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
+      <nav className="flex items-center justify-between max-w-7xl mx-auto w-full">
         {/* Logo - Left side */}
         <Link
           to="/"
-          className="
-            text-white font-serif text-lg md:text-xl lg:text-2xl tracking-wide
-            hover:text-gold transition-colors duration-300
-          "
+          style={{
+            fontFamily: "'Caudex', Georgia, serif",
+            fontWeight: 700,
+            color: '#FFFFFF',
+            fontSize: '24px',
+            letterSpacing: '0.025em',
+            textDecoration: 'none',
+            transition: 'color 0.3s ease',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = '#C9A96E'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
         >
           Kwabena Oppong-Peprah
         </Link>

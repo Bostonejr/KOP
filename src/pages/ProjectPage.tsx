@@ -105,7 +105,8 @@ const ProjectPage: React.FC = () => {
 
       <Header variant="solid" />
 
-      <main className="min-h-screen bg-white pt-24 pb-16">
+      {/* Grey section - header area through 1/3 of hero image */}
+      <div style={{ backgroundColor: '#CACACA' }} className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
           {/* Project header section: Title + Description + Metadata */}
@@ -149,11 +150,19 @@ const ProjectPage: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Hero image */}
-          <ProjectHero
-            image={project.mainImage}
-            projectName={project.name}
-          />
+          {/* Hero image - positioned to overlap grey and white sections */}
+          <div className="relative" style={{ marginBottom: '-200px' }}>
+            <ProjectHero
+              image={project.mainImage}
+              projectName={project.name}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* White section below */}
+      <main className="min-h-screen bg-white pt-64 pb-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
           {/* Image gallery (if project has additional images) */}
           {project.projectImages && project.projectImages.length > 0 && (

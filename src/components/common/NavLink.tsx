@@ -16,8 +16,9 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, isActive = false }) => 
       to={to}
       style={{
         color: isActive ? '#C9A96E' : '#FFFFFF',
-        fontFamily: 'Inter, system-ui, sans-serif',
-        fontSize: '14px',
+        fontFamily: "'Caudex', Georgia, serif",
+        fontWeight: 700,
+        fontSize: '16px',
         letterSpacing: '0.025em',
         textDecoration: 'none',
         position: 'relative',
