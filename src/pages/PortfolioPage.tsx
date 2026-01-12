@@ -19,17 +19,21 @@
  * - useProjects hook handles data fetching with category parameter
  */
 
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Header, Footer } from '../components/common';
-import { CategoryFilter, ProjectGrid } from '../components/portfolio';
-import { useProjects } from '../hooks';
-import type { ProjectCategory, CategoryFilter as CategoryFilterType } from '../types/project';
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Header, Footer } from "../components/common";
+import { CategoryFilter, ProjectGrid } from "../components/portfolio";
+import { useProjects } from "../hooks";
+import type {
+  ProjectCategory,
+  CategoryFilter as CategoryFilterType,
+} from "../types/project";
 
 const PortfolioPage: React.FC = () => {
   // State for the selected category filter
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilterType>('All');
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryFilterType>("All");
 
   // Fetch projects with the selected category filter
   // When selectedCategory changes, the hook refetches with the new filter
@@ -37,10 +41,10 @@ const PortfolioPage: React.FC = () => {
 
   // Available categories for the filter dropdown
   const categories: ProjectCategory[] = [
-    'Residential',
-    'Social',
-    'Recreational',
-    'Religious',
+    "Residential",
+    "Social",
+    "Recreational",
+    "Religious",
   ];
 
   return (
@@ -58,9 +62,11 @@ const PortfolioPage: React.FC = () => {
       <Header variant="solid" />
 
       {/* Main content */}
-      <main className="min-h-screen pt-32 pb-16" style={{ backgroundColor: '#CACACA' }}>
+      <main
+        className="min-h-screen pt-32 pb-16"
+        style={{ backgroundColor: "#CACACA" }}
+      >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-
           {/* Page header: Title and Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +79,7 @@ const PortfolioPage: React.FC = () => {
             "
           >
             {/* Page title */}
-            <h1 className="font-serif text-4xl md:text-5xl text-charcoal">
+            <h1 className="font-serif text-3xl md:text-4xl text-charcoal">
               PROJECTS
             </h1>
 

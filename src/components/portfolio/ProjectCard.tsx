@@ -16,15 +16,15 @@
  * - Staggered animations with index-based delay
  */
 
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import type { Project } from '../../types/project';
-import { imagePresets } from '../../lib/sanityImage';
-import { LazyImage } from '../common';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import type { Project } from "../../types/project";
+import { imagePresets } from "../../lib/sanityImage";
+import { LazyImage } from "../common";
 
 interface ProjectCardProps {
-  project: Project;  // Project data from Sanity
-  index: number;     // Position in grid (for staggered animation)
+  project: Project; // Project data from Sanity
+  index: number; // Position in grid (for staggered animation)
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
@@ -36,13 +36,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.5,
-        delay: index * 0.1,  // 0ms, 100ms, 200ms, etc.
-        ease: [0.25, 0.1, 0.25, 1],  // Custom easing
+        delay: index * 0.1, // 0ms, 100ms, 200ms, etc.
+        ease: [0.25, 0.1, 0.25, 1], // Custom easing
       }}
     >
       <Link
         to={`/portfolio/${project.slug}`}
-        className="group block"  // 'group' enables group-hover on children
+        className="group block" // 'group' enables group-hover on children
       >
         {/* Project image container */}
         <div className="overflow-hidden mb-4">
@@ -54,26 +54,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             - Inner div scales up on hover
             - This creates a "zoom in place" effect
           */}
-          <div className="
+          <div
+            className="
             transform transition-transform duration-500
             group-hover:scale-105
-          ">
+          "
+          >
             <LazyImage
               src={imagePresets.thumbnail(project.mainImage)}
               placeholderSrc={imagePresets.placeholder(project.mainImage)}
               alt={project.mainImage.alt || project.name}
-              aspectRatio="aspect-[3/2]"  // 3:2 aspect ratio like photos
+              aspectRatio="aspect-[3/2]" // 3:2 aspect ratio like photos
               className="w-full"
             />
           </div>
         </div>
 
         {/* Project name */}
-        <h3 className="
-          font-sans text-sm md:text-base text-charcoal
-          group-hover:text-gold
+        <h3
+          className="
+          font-sans text-sm md:text-xl text-charcoal
+          
           transition-colors duration-300
-        ">
+        "
+        >
           {project.name}
         </h3>
       </Link>
