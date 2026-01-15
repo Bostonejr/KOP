@@ -11,8 +11,18 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Validate required environment variables
+if (!process.env.SANITY_PROJECT_ID) {
+  console.error('Error: SANITY_PROJECT_ID environment variable is required');
+  process.exit(1);
+}
+if (!process.env.SANITY_TOKEN) {
+  console.error('Error: SANITY_TOKEN environment variable is required');
+  process.exit(1);
+}
+
 const client = createClient({
-  projectId: process.env.SANITY_PROJECT_ID || '8oeu02kt',
+  projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET || 'production',
   token: process.env.SANITY_TOKEN,
   apiVersion: '2024-01-01',

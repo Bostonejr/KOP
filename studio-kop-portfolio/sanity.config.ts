@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'kop-portfolio',
 
-  projectId: '8oeu02kt',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '8oeu02kt',
+  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [structureTool(), visionTool()],
 

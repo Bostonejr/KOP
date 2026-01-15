@@ -5,21 +5,14 @@
       "Bash(npm init -y)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(set SANITY_PROJECT_ID=8oeu02kt)",
-      "Bash(set SANITY_DATASET=production)",
-      "Bash(set \"SANITY_TOKEN=skUqLIt8FAdDQeMBBKTPPtpcXl90FcwehsbyqzPUgaPcRQDmxlkWWlRGfaxF7ey9Qj6y9eeJEdvqVOZ8Uds2b006ziKzRCBMJYOxAPfOs5b43xAwp9zlVVuX2ZoqUK8lG7PLUjG4UiWaB52Ezjp4cwLMU4Q507eYRcYznaHDiNDUSR1vrnbG\")",
-      "Bash(node scripts/migrate.js:*)",
-      "Bash(powershell -Command \"$env:SANITY_PROJECT_ID=''8oeu02kt''; $env:SANITY_DATASET=''production''; $env:SANITY_TOKEN=''skUqLIt8FAdDQeMBBKTPPtpcXl90FcwehsbyqzPUgaPcRQDmxlkWWlRGfaxF7ey9Qj6y9eeJEdvqVOZ8Uds2b006ziKzRCBMJYOxAPfOs5b43xAwp9zlVVuX2ZoqUK8lG7PLUjG4UiWaB52Ezjp4cwLMU4Q507eYRcYznaHDiNDUSR1vrnbG''; node scripts/migrate.js\")",
-      "Bash(copy:*)",
-      "Bash(cmd /c \"cd /d D:\\\\Projects\\\\KOP\\\\sanity && copy .env .env.local\")",
-      "Bash(cmd /c \"cd /d D:\\\\Projects\\\\KOP\\\\sanity && npx sanity cors add http://localhost:3000 --credentials\")",
-      "Bash(cmd /c \"cd /d D:\\\\Projects\\\\KOP\\\\sanity && npx sanity cors list\")",
-      "Bash(cmd /c \"cd /d D:\\\\Projects\\\\KOP\\\\sanity && npx sanity documents query \"\"*[_type == ''project''][0..2]{name}\"\"\")",
-      "WebFetch(domain:8oeu02kt.api.sanity.io)",
       "Bash(npm run dev:*)",
+      "Bash(npm run deploy:*)",
       "Bash(npx tsc:*)",
+      "Bash(npx sanity:*)",
+      "Bash(firebase:*)",
+      "Bash(node scripts/*.js:*)",
       "Bash(dir:*)",
-      "Bash(node scripts/upload-prabon.js:*)"
+      "Bash(git:*)"
     ]
   }
 }
