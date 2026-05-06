@@ -44,7 +44,7 @@ const ContactPage: React.FC = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex"
+            className="flex w-full order-2 lg:order-1"
           >
             <ContactForm />
           </motion.div>
@@ -54,7 +54,7 @@ const ContactPage: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:block h-full"
+            className="h-56 sm:h-72 lg:h-full order-1 lg:order-2"
           >
             <img
               src="/images/contact-hero.jpg"

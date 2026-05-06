@@ -84,7 +84,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-light-gray h-full p-8 md:p-12 lg:p-16">
+    <div className="bg-light-gray w-full h-full p-8 md:p-12 lg:p-16">
       {/* Heading - italic serif font */}
       <h1
         className="
@@ -98,7 +98,7 @@ const ContactForm: React.FC = () => {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
         {/* Name fields - side by side on larger screens */}
-        <div className="grid grid-cols-1 w-full md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 w-full lg:grid-cols-2 gap-4">
           <FormInput
             label="First name"
             name="firstName"
