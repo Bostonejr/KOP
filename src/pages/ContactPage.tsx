@@ -12,10 +12,10 @@
  * - Image slides in from right (on desktop)
  */
 
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Header, Footer } from '../components/common';
-import { ContactForm } from '../components/contact';
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Header, Footer } from "../components/common";
+import { ContactForm } from "../components/contact";
 
 const ContactPage: React.FC = () => {
   return (
@@ -33,10 +33,12 @@ const ContactPage: React.FC = () => {
 
       {/* Main content - split layout */}
       <main className="min-h-screen pt-16">
-        <div className="
-          grid grid-cols-1 lg:grid-cols-2
+        <div
+          className="
+          grid grid-cols-1 lg:grid-cols-[1fr_2fr]
           min-h-[calc(100vh-64px)]
-        ">
+        "
+        >
           {/* Left side - Contact form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

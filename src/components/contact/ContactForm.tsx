@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
    * The [name]: value syntax allows dynamic key assignment.
    */
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -51,30 +51,36 @@ const ContactForm: React.FC = () => {
     }));
   };
 
-  /**
-   * Handle form submission
-   *
-   * Currently just shows a success message (visual only).
-   * TODO: Add backend integration for actual email sending.
-   */
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission (page reload)
+  // /**
+  //  * Handle form submission
+  //  *
+  //  * Currently just shows a success message (visual only).
+  //  * TODO: Add backend integration for actual email sending.
+  //  */
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    // For now, just show success message
-    // In production, you would send the data to a backend here
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+        ...formData, // spreads firstName, lastName, email, message
+      }),
+    });
 
-    // Reset form after short delay
-    setTimeout(() => {
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
-      });
-      setIsSubmitted(false);
-    }, 3000);
+    const result = await response.json();
+
+    if (result.success) {
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setFormData({ firstName: "", lastName: "", email: "", message: "" });
+        setIsSubmitted(false);
+      }, 3000);
+    } else {
+      console.error("Submission failed:", result);
+      // optionally show an error state to the user
+    }
   };
 
   return (
@@ -83,7 +89,7 @@ const ContactForm: React.FC = () => {
       <h1
         className="
         font-serif text-2xl md:text-3xl lg:text-4xl text-charcoal
-        mb-12 
+        mb-12 mt-4 
       "
       >
         Get in Touch
@@ -92,7 +98,7 @@ const ContactForm: React.FC = () => {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
         {/* Name fields - side by side on larger screens */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 w-full md:grid-cols-2 gap-4">
           <FormInput
             label="First name"
             name="firstName"
@@ -149,9 +155,9 @@ const ContactForm: React.FC = () => {
         </button>
 
         {/* Note about form being visual only (can be removed in production) */}
-        <p className="text-xs text-charcoal/40 text-center mt-4">
+        {/*<p className="text-xs text-charcoal/40 text-center mt-4">
           Form submission is not yet connected to a backend.
-        </p>
+        </p>*/}
       </form>
     </div>
   );

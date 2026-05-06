@@ -17,10 +17,10 @@
  * - Fixed position (stays at top while scrolling)
  */
 
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import NavLink from './NavLink';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import NavLink from "./NavLink";
 
 interface HeaderProps {
   /**
@@ -28,10 +28,10 @@ interface HeaderProps {
    * - 'transparent': See-through, used on homepage with hero images
    * - 'solid': Dark background, used on other pages
    */
-  variant?: 'transparent' | 'solid';
+  variant?: "transparent" | "solid";
 }
 
-const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
+const Header: React.FC<HeaderProps> = ({ variant = "transparent" }) => {
   // Track scroll position to add background when scrolled
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -51,18 +51,18 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
     };
 
     // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Cleanup: remove listener when component unmounts
     // This prevents memory leaks and errors
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []); // Empty array = run once on mount
 
   // Navigation items configuration
   const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Portfolio', path: '/portfolio' },
-    { label: 'Contact', path: '/contact' },
+    { label: "Home", path: "/" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Contact", path: "/contact" },
   ];
 
   /**
@@ -73,8 +73,8 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
    * This handles sub-routes like /portfolio/project-name
    */
   const isActive = (path: string): boolean => {
-    if (path === '/') {
-      return location.pathname === '/';
+    if (path === "/") {
+      return location.pathname === "/";
     }
     return location.pathname.startsWith(path);
   };
@@ -82,10 +82,10 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
   return (
     <motion.header
       // Framer Motion animation: header slides down from top on page load
-      initial={{ y: -100 }}    // Start 100px above viewport
-      animate={{ y: 0 }}        // Animate to natural position
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      style={{ zIndex: 9999, height: '90px' }}  // Inline z-index and 90px height
+      initial={{ y: -100 }} // Start 100px above viewport
+      animate={{ y: 0 }} // Animate to natural position
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{ zIndex: 9999, height: "100px" }} // Inline z-index and 90px height
       className={`
         /* Fixed positioning - stays at top while scrolling */
         fixed top-0 left-0 right-0
@@ -104,9 +104,11 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
           - If scrolled OR solid variant: show dark background
           - Otherwise (transparent + at top): slight dark tint for visibility
         */
-        ${isScrolled || variant === 'solid'
-          ? 'bg-charcoal/95 backdrop-blur-sm'
-          : 'bg-black/20 backdrop-blur-[2px]'}
+        ${
+          isScrolled || variant === "solid"
+            ? "bg-charcoal/95 backdrop-blur-sm"
+            : "bg-black/20 backdrop-blur-[2px]"
+        }
       `}
     >
       <nav className="flex items-center justify-between max-w-7xl mx-auto w-full">
@@ -116,14 +118,18 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
           style={{
             fontFamily: "'Caudex', Georgia, serif",
             fontWeight: 700,
-            color: '#FFFFFF',
-            fontSize: '24px',
-            letterSpacing: '0.025em',
-            textDecoration: 'none',
-            transition: 'color 0.3s ease',
+            color: "#FFFFFF",
+            fontSize: "24px",
+            letterSpacing: "0.025em",
+            textDecoration: "none",
+            transition: "color 0.3s ease",
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = '#C9A96E'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "#C9A96E";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "#FFFFFF";
+          }}
         >
           Kwabena Oppong-Peprah
         </Link>
@@ -132,10 +138,7 @@ const Header: React.FC<HeaderProps> = ({ variant = 'transparent' }) => {
         <ul className="flex items-center gap-4 md:gap-6 lg:gap-8">
           {navItems.map((item) => (
             <li key={item.path}>
-              <NavLink
-                to={item.path}
-                isActive={isActive(item.path)}
-              >
+              <NavLink to={item.path} isActive={isActive(item.path)}>
                 {item.label}
               </NavLink>
             </li>
