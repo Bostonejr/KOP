@@ -16,21 +16,21 @@
  * - Framer Motion for smooth transitions
  */
 
-import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import type { FeaturedProject } from '../../types/project';
-import { imagePresets } from '../../lib/sanityImage';
-import CarouselArrow from './CarouselArrow';
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import type { FeaturedProject } from "../../types/project";
+import { imagePresets } from "../../lib/sanityImage";
+import CarouselArrow from "./CarouselArrow";
 
 interface HeroCarouselProps {
-  projects: FeaturedProject[];   // Array of featured projects to display
-  autoPlayInterval?: number;      // Time between slides in ms (default: 6000)
+  projects: FeaturedProject[]; // Array of featured projects to display
+  autoPlayInterval?: number; // Time between slides in ms (default: 6000)
 }
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({
   projects,
-  autoPlayInterval = 8000,  // 8 seconds per slide (longer to accommodate 4s fade)
+  autoPlayInterval = 8000, // 8 seconds per slide (longer to accommodate 4s fade)
 }) => {
   // Current slide index (0-based)
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,7 +46,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
    * This is important for the useEffect dependency array.
    */
   const goToNext = useCallback(() => {
-    setDirection(1);  // Slide from right
+    setDirection(direction); // Slide from right
     setCurrentIndex((prev) => (prev + 1) % projects.length);
   }, [projects.length]);
 
@@ -54,7 +54,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
    * Navigate to the previous slide
    */
   const goToPrev = useCallback(() => {
-    setDirection(-1);  // Slide from left
+    setDirection(-1); // Slide from left
     // Add projects.length to handle negative numbers before modulo
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
   }, [projects.length]);
@@ -89,12 +89,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
    */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') goToPrev();
-      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === "ArrowLeft") goToPrev();
+      if (e.key === "ArrowRight") goToNext();
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToPrev, goToNext]);
 
   // Get current project
@@ -129,13 +129,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
       */}
       <AnimatePresence initial={false} mode="wait">
         <motion.div
-          key={currentIndex}  // Unique key triggers animation on change
+          key={currentIndex} // Unique key triggers animation on change
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
           transition={{
-            opacity: { duration: 2, ease: 'easeInOut' },  // 2s fade out + 2s fade in = 4s total
+            opacity: { duration: 2, ease: "easeInOut" }, // 2s fade out + 2s fade in = 4s total
           }}
           className="absolute inset-0"
         >
@@ -152,10 +152,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
             Creates a dark gradient at the bottom for text readability.
             The gradient goes from transparent at top to dark at bottom.
           */}
-          <div className="
+          <div
+            className="
             absolute inset-0
             bg-gradient-to-t from-black/60 via-transparent to-black/30
-          " />
+          "
+          />
         </motion.div>
       </AnimatePresence>
 
@@ -172,10 +174,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
         transition={{ delay: 0.3, duration: 0.5 }}
         className="absolute bottom-24 left-6 md:left-12 lg:left-16 z-10"
       >
-        <Link
-          to={`/portfolio/${currentProject.slug}`}
-          className="group"
-        >
+        <Link to={`/portfolio/${currentProject.slug}`} className="group">
           <h2
             style={{ fontFamily: "'Caudex', Georgia, serif", fontWeight: 700 }}
             className="
@@ -189,10 +188,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
       </motion.div>
 
       {/* Navigation arrows - bottom right */}
-      <div className="
+      <div
+        className="
         absolute bottom-24 right-6 md:right-12 lg:right-16 z-10
         flex gap-4
-      ">
+      "
+      >
         <CarouselArrow direction="left" onClick={goToPrev} />
         <CarouselArrow direction="right" onClick={goToNext} />
       </div>
@@ -203,23 +204,26 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
         Each dot represents a slide. Clicking jumps to that slide.
         The current slide's dot is wider and gold-colored.
       */}
-      <div className="
+      <div
+        className="
         absolute bottom-8 left-1/2 -translate-x-1/2 z-10
         flex gap-2
-      ">
+      "
+      >
         {projects.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`
               h-2 rounded-full transition-all duration-300
-              ${index === currentIndex
-                ? 'bg-gold w-8'           // Active: gold, wider
-                : 'bg-white/50 w-2 hover:bg-white/80'  // Inactive: white, circle
+              ${
+                index === currentIndex
+                  ? "bg-gold w-8" // Active: gold, wider
+                  : "bg-white/50 w-2 hover:bg-white/80" // Inactive: white, circle
               }
             `}
             aria-label={`Go to slide ${index + 1}`}
-            aria-current={index === currentIndex ? 'true' : 'false'}
+            aria-current={index === currentIndex ? "true" : "false"}
           />
         ))}
       </div>
